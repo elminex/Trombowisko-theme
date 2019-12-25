@@ -1,0 +1,232 @@
+@import 'mixins';
+
+.header {
+  height: 100%;
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+
+  &__container {
+    width: 100%;
+    margin: 0 auto;
+    height: 60px;
+    position: absolute;
+    display: flex;
+    transition: height .5s;
+    overflow: hidden;
+    z-index: 99;
+
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: white;
+  }
+
+  &__logo {
+
+    &-wrapper {
+      align-self: center;
+      padding: 0;
+      flex: 0;
+      margin: 4px 0 24px;
+
+      .custom-logo {
+        height: 52px;
+        width: 88px;
+        z-index: 10;
+      }
+    }
+  }
+
+  &__menu {
+    &-button {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 10px;
+      height: 60px;
+      width: 60px;
+    }
+
+    &-wrapper {
+      max-width: 250px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+
+      .menu-social-menu-container {
+        width: 100%;
+      }
+
+      .header-menu {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+
+        .menu-item {
+          display: block;
+          list-style-type: none;
+          margin-bottom: 4px;
+          
+          a {
+            display: inline-block;
+            padding: 0 8px;
+            text-decoration: none;
+            color: #000;
+            line-height: 40px;
+            position: relative;
+
+            &:before {
+              content: '';
+              position: absolute;
+              bottom: 7px;
+              left: 0;
+              width: 100%;
+              height: 10px;
+              background-color: transparent;
+              transition: all linear .2s;
+              z-index: -1;
+            }
+
+            &:hover:before {
+              background-color: $green;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.social-menu {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+
+  .menu-item {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0 4px;
+  }
+
+  .menu-image {
+    margin: 0 9px;
+  }
+}
+
+// CSS WHEN MOBILE MENU VISIBLE
+
+.menu-visible {
+  .header__container {
+    height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .header__logo-wrapper {
+    align-self: center;
+    padding: 0;
+    flex: 0;
+    margin: 4px 0 24px;
+  }
+}
+
+@include breakpoint-lg {
+  .header {
+
+    &__container {
+      max-width: 1110px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 48px;
+      position: relative;
+      flex-direction: row;
+      overflow: visible;
+    }
+
+    &__logo {
+
+      &-wrapper {
+        align-self: flex-start;
+        padding: 16px 16px 0;
+        background-color: white;
+        position: relative;
+        flex: 0 0 120px;
+
+        &:after {
+          content: '';
+          height: 0;
+          width: 0;
+          position: absolute;
+          bottom: -30px;
+          right: 0;
+          border-top: 30px solid white;
+          border-left: 100px solid transparent;
+        }
+
+        &:before {
+          content: '';
+          height: 0;
+          width: 0;
+          position: absolute;
+          bottom: -30px;
+          left: 0;
+          border-top: 30px solid white;
+          border-right: 100px solid transparent;
+        }
+
+        .custom-logo {
+          height: 52px;
+          width: 88px;
+          z-index: 10;
+        }
+      }
+    }
+
+    &__menu {
+      &-button {
+        display: none;
+      }
+
+      &-wrapper {
+        max-width: none;
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+
+        .menu-header-menu-container {
+          flex: 1;
+        }
+
+        .menu-social-menu-container {
+          width: auto;
+        }
+
+        .header-menu {
+
+          .menu-item {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
+  .menu-visible {
+    .header {
+      &__container {
+        height: 60px;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      &__logo-wrapper {
+        align-self: flex-start;
+        padding: 16px 16px 0;
+        flex: 0 0 120px;
+      }
+    }
+  }
+}
