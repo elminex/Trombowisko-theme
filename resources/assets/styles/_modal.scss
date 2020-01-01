@@ -22,52 +22,55 @@
   }
 }
 
-.wpcf7 {
-  &-text {
-    width: 100%;
-  }
+.modal__content {
 
-  &-form {
-    label {
-      font-size: 20px;
-      line-height: 1.4;
-      color: #3e403c;
+  .wpcf7 {
+    &-text {
+      width: 100%;
     }
 
-    p:last-of-type {
-      text-align: center;
-    }
+    &-form {
+      label {
+        font-size: 20px;
+        line-height: 1.4;
+        color: #3e403c;
+      }
 
-    &-control {
-      margin: 12px 0 28px;
-      position: relative;
-      font-style: italic;
-      color: $text-black;
-      line-height: 1.4;
-      border: none;
-      height: 55px;
-      outline: none;
+      p:last-of-type {
+        text-align: center;
+      }
 
-      &-wrap {
-        &:after {
-          content: '';
-          position: absolute;
-          bottom: -2px;
-          left: 0;
-          height: 1px;
-          width: 100%;
-          background-color: $green-darker;
+      &-control {
+        margin: 12px 0 28px;
+        position: relative;
+        font-style: italic;
+        color: $text-black;
+        line-height: 1.4;
+        border: none;
+        height: 55px;
+        outline: none;
+
+        &-wrap {
+          &:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            height: 1px;
+            width: 100%;
+            background-color: $green-darker;
+          }
+        }
+
+        &::placeholder {
+          color: $text-black;
         }
       }
-
-      &::placeholder {
-        color: $text-black;
-      }
     }
-  }
 
-  &-submit {
-    @include btn-green;
+    &-submit {
+      @include btn-green;
+    }
   }
 }
 

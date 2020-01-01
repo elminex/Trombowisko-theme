@@ -4,14 +4,18 @@
 
 .slide-content {
   h2 {
-    width: 58vw;
-    font-size: 64px;
+    width: 100%;
+    font-size: 30px;
     font-weight: bold;
     line-height: 1.6;
     color: $text-white;
     background-color: rgba(0, 0, 0, .6);
     position: relative;
     z-index: 5;
+    @include breakpoint-md {
+      font-size: 64px;
+      width: 58vw;
+    }
   }
 }
 

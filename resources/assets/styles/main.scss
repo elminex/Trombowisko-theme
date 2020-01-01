@@ -22,7 +22,6 @@ Version: 1.0
 
   &__link {
     @include btn-green;
-    position: relative;
 
     &:after {
       position: absolute;
@@ -105,12 +104,14 @@ Version: 1.0
   }
 }
 
-@import 'header';
-@import 'footer';
-@import 'front-page';
-@import 'modal';
+
 
 @include breakpoint-md {
+  .page-id-19 {
+    .page__banner {
+      height: 560px;
+    }
+  }
   .page__banner {
     height: 300px
   }
@@ -125,3 +126,8 @@ Version: 1.0
   }
 }
 
+@import 'header';
+@import 'footer';
+@import 'front-page';
+@import 'modal';
+@import 'contact';

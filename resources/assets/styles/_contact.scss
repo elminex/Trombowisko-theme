@@ -1,0 +1,119 @@
+@import 'variables';
+@import 'mixins';
+
+.page-id-19 {
+  .wpcf7 {
+    padding: 10px;
+
+    @include breakpoint-md {
+      padding: 0;
+      position: absolute;
+      top: 240px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @include breakpoint-lg {
+      left: 166px;
+      transform: none;
+    }
+  }
+
+  .contact {
+    &__container {
+      max-width: 500px;
+      margin: 0 auto 36px;
+      padding: 18px 12px;
+      box-shadow: 4px 4px 12px 0 rgba(0, 0, 0, 0.25);
+      border-radius: 15px;
+
+      textarea,
+      input {
+        width: 100%;
+      }
+
+      textarea {
+        min-height: 100px;
+      }
+
+      @include breakpoint-md {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 8px 36px 48px;
+      }
+    }
+
+    &__submit-wrapper {
+      position: relative;
+      margin-top: 56px;
+      height: 52px;
+
+      .wpcf7-submit {
+        @include btn-green;
+      }
+
+      &:after {
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        transform: translateY(-50%);
+        font-family: "Font Awesome 5 Free";
+        content: "\f054";
+        display: inline-block;
+        padding-right: 3px;
+        vertical-align: middle;
+        font-weight: 900;
+      }
+    }
+
+    &__title {
+      font-size: 24px;
+      text-align: center;
+      line-height: 1.41;
+    }
+
+    &__inputs {
+      label {
+        display: inline-block;
+        font-size: 18px;
+        line-height: 1.4;
+        color: $text-light-black;
+        margin-bottom: 20px;
+      }
+
+      .wpcf7-form-control {
+        position: relative;
+        font-style: italic;
+        color: $text-black;
+        line-height: 1.4;
+        border: none;
+        height: 55px;
+        outline: none;
+        background-color: inherit;
+
+        &-wrap {
+          &:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            height: 2px;
+            width: 100%;
+            background-color: $green-darker;
+          }
+        }
+
+        &::placeholder {
+          color: $text-black;
+          background-color: inherit;
+
+        }
+      }
+    }
+  }
+
+  @include breakpoint-md {
+    .page__container {
+      padding-top: 250px;
+    }
+  }
+}
