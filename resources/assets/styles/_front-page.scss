@@ -9,7 +9,6 @@
     font-weight: bold;
     line-height: 1.6;
     color: $text-white;
-    background-color: rgba(0, 0, 0, .6);
     position: relative;
     z-index: 5;
     @include breakpoint-md {

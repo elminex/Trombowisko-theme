@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   console.log('DOM fully loaded and parsed');
   const menuButton = document.getElementById('menu-button');
   const toggleClass = (e) => {
-    const wrapper = document.getElementById('header');
+    const wrapper = document.querySelector('body');
     wrapper.classList.toggle('menu-visible');
     console.log('menu-toggled');
   }

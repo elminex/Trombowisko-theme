@@ -16,6 +16,7 @@
       </div>
       <button class="header__menu-button" id="menu-button">
         <span class="header__menu-hamburger dashicons dashicons-menu-alt3"></span>
+        <span class="header__menu-close dashicons dashicons-no"></span>
       </button>
       <div class="header__menu-wrapper">
         <?php wp_nav_menu(array('theme_location' => 'header-menu',

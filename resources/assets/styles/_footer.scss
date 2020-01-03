@@ -1,13 +1,46 @@
 @import 'variables';
+
 .footer {
+  margin-top: 48px;
   width: 100%;
+
   &__social {
     width: 100%;
+    padding: 32px;
     height: 205px;
     background-color: $green-darker;
   }
+
+  &__text {
+    color: #3e403c;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 42px;
+    display: block;
+  }
+
   &__copyright {
+    padding-top: 8px;
     height: 50px;
     width: 100%;
+    text-align: center;
+    color: #3e403c;
+    font-size: 12px;
+  }
+
+  .footer-menu {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .menu-item {
+      display: inline-block;
+    }
+    .menu-item:not(:last-of-type) {
+      margin-right: 66px;
+    }
   }
 }

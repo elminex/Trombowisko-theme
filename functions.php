@@ -42,6 +42,7 @@ function register_menus()
         array(
             'header-menu' => __('Header Menu'),
             'social-menu' => __('Social Menu'),
+            'footer-menu' => __('Footer Menu'),
         )
     );
 }

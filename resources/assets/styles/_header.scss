@@ -1,24 +1,26 @@
 @import 'mixins';
 
 .header {
-  height: 100%;
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  height: 60px;
   font-family: 'Oswald', sans-serif;
   font-size: 20px;
   text-transform: uppercase;
+  transition: height .5s;
+  z-index: 10;
 
   &__container {
     width: 100%;
     margin: 0 auto;
-    height: 60px;
-    position: absolute;
+    height: 100%;
     display: flex;
-    transition: height .5s;
-    overflow: hidden;
     z-index: 99;
-
+    align-items: center;
     flex-direction: column;
     justify-content: flex-start;
-    background-color: white;
+    overflow: hidden;
   }
 
   &__logo {
@@ -27,12 +29,33 @@
       align-self: center;
       padding: 0;
       flex: 0;
-      margin: 4px 0 24px;
+      height: 60px;
+      position: relative;
+      margin-bottom: 24px;
+
+      //display: flex;
+      /*&:after {
+        content: '';
+        position: absolute;
+        height: 10px;
+        width: 100%;
+        bottom: -10px;
+        left: 0;
+        z-index: 12;
+        background-color: white;
+      }
+      */
 
       .custom-logo {
-        height: 52px;
-        width: 88px;
+        height: 46px;
+        width: auto;
         z-index: 10;
+
+        &-link {
+          display: flex;
+          height: 100%;
+          align-items: center;
+        }
       }
     }
   }
@@ -45,19 +68,32 @@
       right: 10px;
       height: 60px;
       width: 60px;
+      background: none;
+      outline: none;
+      border: none;
+      padding: 0;
+    }
+
+    &-hamburger {
+      display: inline-block;
+    }
+
+    &-close {
+      display: none;
     }
 
     &-wrapper {
-      max-width: 250px;
       width: 100%;
-      margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
+      height: 100%;
 
       .menu-social-menu-container {
         width: 100%;
+        max-width: 250px;
+        padding-bottom: 24px;
       }
 
       .header-menu {
@@ -69,7 +105,7 @@
           display: block;
           list-style-type: none;
           margin-bottom: 4px;
-          
+
           a {
             display: inline-block;
             padding: 0 8px;
@@ -119,17 +155,27 @@
 // CSS WHEN MOBILE MENU VISIBLE
 
 .menu-visible {
-  .header__container {
+  & .header {
     height: 100vh;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
 
-  .header__logo-wrapper {
-    align-self: center;
-    padding: 0;
-    flex: 0;
-    margin: 4px 0 24px;
+    &__container {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .header__logo-wrapper {
+      align-self: center;
+      padding: 0;
+      flex: 0;
+    }
+
+    .header__menu-close {
+      display: inline-block;
+    }
+
+    .header__menu-hamburger {
+      display: none;
+    }
   }
 }
 
@@ -149,13 +195,14 @@
     &__logo {
 
       &-wrapper {
+        height: auto;
         align-self: flex-start;
-        padding: 16px 16px 0;
+        padding: 20px 16px 0;
         background-color: white;
         position: relative;
         flex: 0 0 120px;
 
-        &:after {
+        /* &:after {
           content: '';
           height: 0;
           width: 0;
@@ -176,11 +223,10 @@
           border-top: 30px solid white;
           border-right: 100px solid transparent;
         }
+        */
 
         .custom-logo {
           height: 52px;
-          width: 88px;
-          z-index: 10;
         }
       }
     }
@@ -191,9 +237,11 @@
       }
 
       &-wrapper {
+        padding: 8px 0 0;
         max-width: none;
         display: flex;
         flex-direction: row;
+        align-items: center;
         flex: 1;
 
         .menu-header-menu-container {
@@ -207,11 +255,16 @@
         .header-menu {
 
           .menu-item {
+            margin: 0;
             display: inline-block;
           }
         }
       }
     }
+  }
+
+  .social-menu {
+    margin: 0;
   }
 
   .menu-visible {
