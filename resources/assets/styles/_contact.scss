@@ -1,27 +1,14 @@
 @import 'variables';
 @import 'mixins';
 
-.page-id-25 {
+.page-id-19 {
   .wpcf7 {
     padding: 10px;
-
-    @include breakpoint-md {
-      padding: 0;
-      position: absolute;
-      top: 240px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    @include breakpoint-lg {
-      left: 166px;
-      transform: none;
-    }
   }
 
   .contact {
     &__container {
-      max-width: 500px;
+      max-width: 450px;
       margin: 0 auto 36px;
       padding: 18px 12px;
       box-shadow: 4px 4px 12px 0 rgba(0, 0, 0, 0.25);
@@ -33,12 +20,8 @@
       }
 
       textarea {
-        min-height: 100px;
-      }
-
-      @include breakpoint-md {
-        background-color: rgba(255, 255, 255, 0.9);
-        padding: 8px 36px 48px;
+        margin-top: 8px;
+        min-height: 92px;
       }
     }
 
@@ -77,7 +60,8 @@
         font-size: 18px;
         line-height: 1.4;
         color: $text-light-black;
-        margin-bottom: 20px;
+        margin-bottom: 8px;
+        width: 100%;
       }
 
       .wpcf7-form-control {
@@ -105,15 +89,73 @@
         &::placeholder {
           color: $text-black;
           background-color: inherit;
-
+          padding-left: 4px;
         }
       }
     }
   }
 
-  @include breakpoint-md {
+
+}
+
+@media (min-width: 768px) {
+
+
+  .page-id-19 {
+    .wpcf7 {
+      padding: 0;
+      position: absolute;
+      top: -335px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     .page__container {
-      padding-top: 250px;
+      position: relative;
+
+      &:before {
+        content: '';
+        display: inline-block;
+        height: 200px;
+        width: 100%;
+      }
+    }
+
+    .contact {
+      &__container {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 8px 36px 48px;
+      }
+      &__submit-wrapper {
+        padding: 0 40px 0 10px;
+        margin-top: 24px;
+        &:after {
+          right: 56px;
+        }
+      }
+      &__title {
+        margin-bottom: 12px;
+      }
+    }
+  }
+
+  .page__banner {
+    height: 560px;
+  }
+
+}
+
+@media (min-width: 996px) {
+  .page-id-19 {
+    .wpcf7 {
+      left: 0;
+      transform: none;
+    }
+
+    .page__container {
+      &:before {
+        width: 60%;
+      }
     }
   }
 }
