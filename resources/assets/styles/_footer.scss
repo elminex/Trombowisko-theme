@@ -38,6 +38,10 @@
 
     .menu-item {
       display: inline-block;
+      &__icon {
+        color: black;
+        font-size: 48px;
+      }
     }
     .menu-item:not(:last-of-type) {
       margin-right: 66px;

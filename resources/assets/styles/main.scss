@@ -11,7 +11,9 @@ Version: 1.3
 * {
   box-sizing: border-box;
 }
-
+body.menu-visible {
+  overflow: hidden;
+}
 .page {
   font-family: $font-open-sans;
 
@@ -53,7 +55,7 @@ Version: 1.3
 
   h1 {
     font-size: 48px;
-    margin: 0 0 1em;
+    margin: 0 0 48px;
   }
 
   &__banner {
@@ -80,7 +82,7 @@ Version: 1.3
   color: black;
   margin: 0 0 48px;
 
-  & a {
+  &__link {
     @include btn-green;
 
     &:visited {
@@ -108,6 +110,7 @@ Version: 1.3
 
 .wp-block-column {
   margin-bottom: 1em;
+  padding: 8px;
 }
 
 .page-id-19 {

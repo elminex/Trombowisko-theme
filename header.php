@@ -14,7 +14,7 @@
       <div class="header__logo-wrapper">
         <?php the_custom_logo()?>
       </div>
-      <button class="header__menu-button" id="menu-button">
+      <button class="header__menu-button" data-button="menu">
         <span class="header__menu-hamburger dashicons dashicons-menu-alt3"></span>
         <span class="header__menu-close dashicons dashicons-no"></span>
       </button>

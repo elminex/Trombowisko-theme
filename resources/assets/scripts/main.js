@@ -1,43 +1,87 @@
-console.log("skrypty dzialaja")
-window.addEventListener('DOMContentLoaded', (event) => {
-  console.log('DOM fully loaded and parsed');
-  const menuButton = document.getElementById('menu-button');
-  const toggleClass = (e) => {
-    const wrapper = document.querySelector('body');
-    wrapper.classList.toggle('menu-visible');
-    console.log('menu-toggled');
-  }
-  menuButton.addEventListener('click', toggleClass);
-});
+// MENU
 
-window.addEventListener('DOMContentLoaded', (event) => {
-  const teacherButtons = document.querySelectorAll('.teacher__button');
+(function menu() {
+  const desktopViewport = window.matchMedia("screen and (max-width: 996px)");
+  const menuButton = document.querySelector('[data-button="menu"]');
+  const subMenuTrigger = document.querySelectorAll('.menu-item-has-children');
+  const pageBody = document.querySelector('body');
+  function toggleSub(e) {
+    e.currentTarget.classList.contains('sub-visible') ? e.currentTarget.classList.remove('sub-visible') : e.currentTarget.classList.add('sub-visible');
+  };
+  function toggleMenu() {
+    if (pageBody.classList.contains('menu-visible')) {
+      pageBody.classList.remove('menu-visible');
+      subMenuTrigger.forEach(elem => { elem.classList.remove('sub-visible') });
+    } else {
+      pageBody.classList.add('menu-visible');
+    }
+  };
+
+  const mobileMenuHandler = (mq) => {
+    if (mq.matches) {
+      menuButton.addEventListener('click', toggleMenu);
+      subMenuTrigger.forEach(elem => { elem.addEventListener('click', toggleSub) });
+    } else {
+      menuButton.removeEventListener('click', toggleMenu);
+      if (pageBody.classList.contains('menu-visible')) {
+        pageBody.classList.remove('menu-visible');
+      };
+      subMenuTrigger.forEach(elem => {
+        elem.removeEventListener('click', toggleSub);
+        if (elem.classList.contains('sub-visible')) {
+          elem.classList.remove('sub-visible');
+        };
+      });
+    }
+  }
+
+  desktopViewport.addEventListener('change', mobileMenuHandler);
+  mobileMenuHandler(desktopViewport);
+})();
+
+// BLOCK FUNCTIONS
+
+(function checkForBlocks() {
+  const blocks = [...document.querySelectorAll('[data-block]')];
+  if (blocks.some(elem => elem.dataset.block === "teacher")) {
+    teacherBlockHandler();
+  } else if (blocks.some(elem => elem.dataset.block === "tabs")) {
+    offerBlockHandler();
+  };
+})();
+
+function teacherBlockHandler() {
+  const teacherButtons = document.querySelectorAll('[data-button="teacher"]');
   const toggleActive = (e) => {
-    console.log(e.currentTarget)
     e.currentTarget.parentNode.parentNode.classList.toggle('active');
   }
   teacherButtons.forEach((button) => button.addEventListener('click', toggleActive))
-})
+}
 
-window.addEventListener('DOMContentLoaded', (e) => {
-  const list = document.getElementById('list');
-  list.addEventListener('click', (event) => {
-    console.log(event.target);
-    const clickTarget = event.target.classList.contains('oferta__tab-text') ? event.target.parentNode : event.target;
-    if (clickTarget.classList.contains('active')) {
-      return false;
-    } else if (clickTarget.classList.contains('oferta__tabs')) {
-      return false;
-    } else {
-      const activeTab = document.getElementsByClassName('oferta__tab active');
-      const activeId = activeTab[0].getAttribute('data-to');
-      const activeContent = document.getElementById(activeId);
-      const newTab = clickTarget;
-      const newContent = document.getElementById(newTab.dataset.to);
-      activeTab[0].classList.remove('active');
-      activeContent.classList.remove('active');
-      newTab.classList.add('active');
-      newContent.classList.add('active');
-    }
-  })
-});
+function offerBlockHandler() {
+  const block = document.querySelectorAll('[data-block="tabs"]');
+  block.forEach(elem => tabHandler(elem));
+
+  function tabHandler(block) {
+    const list = block.querySelector('[data-id="list"]');
+    const listItems = list.childNodes;
+    let currentActive;
+    listItems.forEach(elem => elem.addEventListener('click', (event) => {
+      const clickTarget = event.currentTarget;
+      if (clickTarget === currentActive) {
+        return false
+      } else {
+        const activeTab = currentActive === undefined ? listItems[0] : currentActive;
+        const activeId = activeTab.getAttribute('data-to');
+        const activeContent = block.querySelector(`#${activeId}`);
+        const newTab = clickTarget;
+        const newContent = block.querySelector(`#${newTab.dataset.to}`); 
+        activeTab.classList.remove('active');
+        activeContent.classList.remove('active');
+        currentActive = clickTarget;
+        currentActive.classList.add('active');
+        newContent.classList.add('active');
+      }
+    }))
+  }
+}
