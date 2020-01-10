@@ -11,7 +11,9 @@
   display: inline-block;
   text-align: center;
   min-width: 250px;
-  height: 52px;
+  max-width: 100%;  
+  min-height: 52px;
+  max-height: 156px;
   text-decoration: none;
   font-size: 24px;
   line-height: 52px;
@@ -23,6 +25,7 @@
   position: relative;
   outline: none;
   border: none;
+  word-wrap: break-word;
 }
 
 @mixin breakpoint-sm {

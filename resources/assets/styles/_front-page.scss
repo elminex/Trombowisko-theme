@@ -1,79 +1,67 @@
 @import 'variables';
 @import 'mixins';
 
+.page {
+  .wp-block-eedee-block-gutenslider {
+    .wp-block-eedee-block-gutenslide {
 
-.slide-content {
-  h2 {
-    width: 100%;
-    font-size: 30px;
-    font-weight: bold;
-    line-height: 1.6;
-    color: $text-white;
-    position: relative;
-    z-index: 5;
-    @include breakpoint-md {
-      font-size: 64px;
-      width: 58vw;
+      .slide-content {
+        padding-top: 45%;
+        padding-bottom: 100px;
+        justify-content: space-between;
+
+        h2 {
+          width: 100%;
+          font-size: 30px;
+          font-weight: bold;
+          line-height: 1.6;
+          color: $text-white;
+          position: relative;
+          z-index: 5;
+          word-wrap: break-word;
+
+
+          @include breakpoint-md {
+            font-size: 64px;
+            width: 58vw;
+          }
+        }
+
+        .wp-block-button {
+          margin-bottom: 0;
+        }
+      }
     }
   }
 }
 
-/*
-.front {
+@include breakpoint-md {
 
-  &__triangle {
-    margin-top: 100px;
-    width: 100vw;
-    height: 600px;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
+  .page {
+    .wp-block-eedee-block-gutenslider {
+      .wp-block-eedee-block-gutenslide {
 
-    &:before {
-      content: '';
-      display: block;
-      background: rgba(255, 255, 255, 0.6);
-      position: absolute;
-      top: -200px;
-      left: -160px;
-      width: 150vw;
-      height: 515px;
-      transform: rotate(-12deg);
-      overflow: hidden;
-      z-index: 3;
+        .slide-content {
+          padding-top: 60px;
+          padding-bottom: 60px;
+          justify-content: center;
+        }
+      }
     }
-  }
-
-  &__title-wrapper {
-    @include page-container;
-    z-index: 2;
-    position: relative;
-  }
-
-  &__title {
-    width: 58vw;
-    z-index: 3;
-    font-family: OpenSans;
-    font-size: 64px;
-    font-weight: bold;
-    line-height: 1.6;
-    color: $text-black;
-  }
-
-  &__button {
-    @include btn-green;
-    position: relative;
-
-    .dashicons-arrow-right-alt2 {
-      height: 20px;
-      width: 20px;
-      position: absolute;
-      right: 16px;
-      top: 16px;
-    }
-    
   }
 }
-*/
+
+@include breakpoint-lg {
+  .page {
+    .wp-block-eedee-block-gutenslider {
+      .wp-block-eedee-block-gutenslide {
+
+        .slide-content {
+          padding-top: 70px;
+          padding-bottom: 70px;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
