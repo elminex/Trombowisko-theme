@@ -2,27 +2,38 @@
 get_header();
 ?>
 <div class="content">
-  <div class="page__banner" id="custom-background-image"></div>
   <?php
+$otherBlocks = array();
 if (have_posts()) {
-      // Load posts loop.
-      while (have_posts()) {
-          the_post();?>
-  <div class="page__container">
-    <?php
-    the_content();?>
-  </div>
-  <?php
-  }
+    $post = get_post();
+    if (has_blocks($post->post_content)) {
+        $blocks = parse_blocks($post->post_content);
+        foreach ($blocks as $block) {
+            if ($block['blockName'] === 'trombowisko/banner') {
+                echo render_block($block);
+            } else {
+                array_push($otherBlocks, $block);
+            }
+        }
+    }
 } else {
-    ?>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae iste adipisci eius, natus quibusdam
-    ut
-    repellendus aspernatur porro incidunt voluptatibus architecto voluptates ipsam recusandae eveniet expedita dicta
-    laudantium dolore.</p>
-  <?php
+
 }
 ?>
+  <div class="page__container">
+    <?php
+foreach ($otherBlocks as $block) {
+    if ($block['blockName'] !== 'core/shortcode') {
+        echo render_block($block);
+    }
+    if ($block['blockName'] === 'core/shortcode') {
+        echo do_shortcode($block['innerHTML']);
+    }
+
+}
+?>
+  </div>
+
 </div>
 <?php
 get_footer();
