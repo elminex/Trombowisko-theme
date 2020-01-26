@@ -1,28 +1,73 @@
 @import 'variables';
 @import 'mixins';
 
-.pum-container.pum-responsive-medium {
-  margin: 0 8px 24px;
-  padding: 24px;
-}
+.pum {
 
-.pum-content {
-  .bottom-text {
-    font-size: 14px;
-    text-align: center;
-    margin-bottom: 28px;
+  .pum-container {
+    padding: 24px 8px;
   }
 
-  .top-text {
-    text-align: center;
-    padding: 0 30px;
-    margin-bottom: 44px;
-    font-size: 20px;
-    line-height: 1.4;
-  }
-}
+  .pum-content {
+    .bottom-text {
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 32px;
+      color: $text-light-black;
+    }
 
-.modal__content {
+    .top-text {
+      text-align: center;
+      padding: 0 40px;
+      margin-bottom: 44px;
+      font-size: 20px;
+      line-height: 1.4;
+      color: $text-light-black;
+    }
+
+    &+.pum-close {
+      background: linear-gradient(45deg, $text-black 30%, $green 60%);
+      background-size: 400% 100%;
+      background-position: 100% 50%;
+      transition: background-position .5s, color .3s ease-in-out .1s;
+      &:before {
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: '\f00d';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      &:hover {
+        color: $green;
+        background-position: 0 50%;
+      }
+    }
+  }
+
+  .form-fields {
+    margin-bottom: 16px;
+  }
+
+  .modal__content {
+    .submit-button {
+      display: flex;
+      justify-content: center;
+      position: relative;
+
+      .ajax-loader {
+        position: absolute;
+        right: calc(50% - 141px);
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
 
   .wpcf7 {
     &-text {
@@ -31,9 +76,7 @@
 
     &-form {
       label {
-        font-size: 20px;
-        line-height: 1.4;
-        color: #3e403c;
+        @include form-label
       }
 
       p:last-of-type {
@@ -41,20 +84,16 @@
       }
 
       &-control {
-        margin: 12px 0 28px;
-        position: relative;
-        font-style: italic;
-        color: $text-black;
-        line-height: 1.4;
-        border: none;
-        height: 55px;
-        outline: none;
+        @include form-inputs;
 
         &-wrap {
+          display: block;
+          margin-top: 8px;
+
           &:after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: 10px;
             left: 0;
             height: 1px;
             width: 100%;
@@ -64,25 +103,54 @@
 
         &::placeholder {
           color: $text-black;
+          font-size: $form-placeholder-size;
+        }
+      }
+
+      &.invalid {
+        label .wpcf7-form-control-wrap:after {
+          bottom: 26px;
         }
       }
     }
 
+    &-not-valid {
+      margin-bottom: 0;
+    }
+
     &-submit {
       @include btn-green;
+      margin: 0;
+      font-style: normal
+    }
+
+    &-validation-errors {
+      border: 2px solid $form-tip-color;
+      font-size: $form-tip-size;
+    }
+
+    &-mail-sent-ok {
+      font-size: $form-send-text-size;
+      text-align: center;
+    }
+
+    &-not-valid-tip {
+      margin-bottom: 16px;
+      color: $form-tip-color;
+      font-size: $form-tip-size;
     }
   }
 }
 
 @include breakpoint-sm {
-  .pum-container.pum-responsive-medium {
+  .pum .pum-container.pum-responsive-medium {
     width: 500px;
     margin-left: calc((100vw - 500px) / 2);
   }
 }
 
 @include breakpoint-md {
-  .pum-container.pum-responsive.pum-responsive-medium {
+  .pum .pum-container.pum-responsive.pum-responsive-medium {
     width: 580px;
     margin-left: calc((100vw - 580px) / 2);
     padding: 42px 52px;
@@ -92,8 +160,14 @@
     padding: 0;
   }
 
-  .form-fields {
-    width: 350px;
-    margin: 0 auto;
+  .pum {
+    .form-fields {
+      width: 350px;
+      margin: 0 auto 32px;
+    }
+
+    .pum-content .bottom-text {
+      margin-bottom: 64px;
+    }
   }
 }

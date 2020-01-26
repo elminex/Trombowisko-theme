@@ -5,16 +5,30 @@
 
   //25 na live, 19 na local
   .wpcf7 {
-    padding: 10px;
     max-width: 450px;
-    margin: 0 auto 36px;
+    margin: 0 auto 80px;
+    z-index: 3;
+    padding: 32px 0 0;
+
+    &-validation-errors {
+      border: 2px solid $form-tip-color;
+      font-size: $form-tip-size;
+    }
+
+    &-mail-sent-ok {
+      font-size: $form-send-text-size;
+      text-align: center;
+    }
+
+    &-not-valid-tip {
+      margin-bottom: 16px;
+      color: $form-tip-color;
+      font-size: $form-tip-size;
+    }
   }
 
   .contact {
     &__container {
-      padding: 18px 12px;
-      box-shadow: 4px 4px 12px 0 rgba(0, 0, 0, 0.25);
-      border-radius: 15px;
 
       textarea,
       input {
@@ -22,31 +36,41 @@
       }
 
       textarea {
-        margin-top: 8px;
         min-height: 92px;
       }
     }
 
     &__submit-wrapper {
       position: relative;
-      margin-top: 56px;
+      margin-top: 40px;
       height: 52px;
+      display: flex;
+      justify-content: center;
 
       .wpcf7-submit {
         @include btn-green;
+        margin: 0 auto;
+        width: 320px;
+
+        &:after {
+          position: absolute;
+          top: 50%;
+          right: 16px;
+          transform: translateY(-50%);
+          font-family: "Font Awesome 5 Free";
+          content: "\f054";
+          display: inline-block;
+          padding-right: 3px;
+          vertical-align: middle;
+          font-weight: 900;
+        }
       }
 
-      &:after {
+      .ajax-loader {
         position: absolute;
+        right: 0;
         top: 50%;
-        right: 16px;
         transform: translateY(-50%);
-        font-family: "Font Awesome 5 Free";
-        content: "\f054";
-        display: inline-block;
-        padding-right: 3px;
-        vertical-align: middle;
-        font-weight: 900;
       }
     }
 
@@ -58,42 +82,54 @@
 
     &__inputs {
       label {
-        display: inline-block;
-        font-size: 18px;
-        line-height: 1.4;
-        color: $text-light-black;
-        margin-bottom: 8px;
-        width: 100%;
+        @include form-label;
+
+        &:last-of-type {
+          .wpcf7-form-control-wrap {
+            &:after {
+              bottom: 0;
+            }
+          }
+        }
       }
 
       .wpcf7-form-control {
-        position: relative;
-        font-style: italic;
-        color: $text-black;
-        line-height: 1.4;
-        border: none;
-        height: 55px;
-        outline: none;
+        @include form-inputs;
         background-color: inherit;
 
         &-wrap {
+          display: block;
+          margin-top: 8px;
+
           &:after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: 8px;
             left: 0;
             height: 2px;
             width: 100%;
             background-color: $green-darker;
           }
+
         }
 
         &::placeholder {
           color: $text-black;
+          font-size: $form-placeholder-size;
           background-color: inherit;
           padding-left: 4px;
         }
       }
+    }
+  }
+
+  .invalid {
+    label .wpcf7-form-control-wrap:after {
+      bottom: 26px;
+    }
+
+    label:last-of-type .wpcf7-form-control-wrap:after {
+      bottom: 20px;
     }
   }
 
@@ -102,6 +138,7 @@
       width: 100%;
       max-width: 115px;
       border-radius: 50%;
+      border: 2px solid $green;
 
       &-container {
         margin: 0 0 28px;
@@ -122,27 +159,29 @@
       padding: 0 8px;
     }
 
-
     .fa-map-marker-alt {
       position: relative;
       left: 50%;
       transform: translateX(-50%);
       font-size: 40px;
+      margin-bottom: 16px;
     }
 
     .fa-phone-alt {
       font-size: 24px;
       font-weight: normal;
+      margin-right: 8px;
+      vertical-align: middle;
+      color: $text-black;
 
       &:before {
-        padding-right: 12px;
         font-weight: 900;
       }
+    }
 
-      a {
-        color: black;
-        text-decoration: none;
-      }
+    a {
+      color: black;
+      text-decoration: none;
     }
   }
 
@@ -158,22 +197,21 @@
 
 @media (min-width: 768px) {
   .page-id-25 {
-
-    //25 na live, 19 na local
-    .wpcf7 {
-      padding: 0;
-      margin: -415px 0 32px;
+    .wp-block-trombowisko-banner {
+      height: 560px;
     }
 
+    .wpcf7 {
+      margin: -465px auto 64px;
+      position: relative;
+      box-shadow: 4px 4px 12px 0 rgba(0, 0, 0, 0.25);
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 36px 36px 36px;
+    }
 
     .contact {
-      &__container {
-        background-color: rgba(255, 255, 255, 0.9);
-        padding: 8px 36px 48px;
-      }
 
       &__submit-wrapper {
-        padding: 0 40px 0 10px;
         margin-top: 24px;
 
         &:after {
@@ -201,6 +239,41 @@
         left: -80px;
         transform: none;
         font-size: 40px;
+        margin: 0;
+      }
+
+      .phone-number {
+
+        .fa-phone-alt,
+        a {
+          transition: all .2s;
+          position: relative;
+        }
+        a:after {
+          content: '';
+          height: 1px;
+          width: 100%;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          background-color:transparent;
+          transition: background-color .2s;
+        }
+      }
+
+
+
+      .phone-number:hover {
+        a {
+          color: $green-darker;
+          &:after {
+            background-color: $green-darker;
+          }
+        }
+
+        .fa-phone-alt {
+          color: $green-darker;
+        }
       }
     }
   }
@@ -208,6 +281,9 @@
 
 @media (min-width: 996px) {
   .page-id-25 {
+    .wpcf7 {
+      margin: -465px 0 64px;
+    }
 
     //25 na live, 19 na local
     .wp-block-columns {
@@ -215,12 +291,6 @@
 
       .wp-block-column:first-child {
         padding-top: 80px;
-      }
-    }
-
-    .fa-phone-alt {
-      a {
-        pointer-events: none;
       }
     }
   }

@@ -10,6 +10,7 @@
       line-height: 1.5;
       color: $text-light-black;
       margin: 0;
+      font-family: 'Oswald', sans-serif;
     }
 
     h3 {
@@ -17,6 +18,7 @@
       font-size: 24px;
       color: $text-light-black;
       margin: 0;
+      font-family: 'Oswald', sans-serif;
     }
 
     h4 {
@@ -24,6 +26,7 @@
       font-size: 30px;
       color: $text-black;
       margin: 0 0 16px;
+      font-family: 'Oswald', sans-serif;
     }
 
     p {
@@ -31,8 +34,6 @@
       line-height: 1.6;
       margin: 0;
     }
-
-
   }
 }
 
@@ -41,9 +42,11 @@
     h2 {
       font-size: 48px;
     }
+
     h3 {
       font-size: 36px;
     }
+
     .wp-block-button {
       margin: 0 0 64px 0;
     }

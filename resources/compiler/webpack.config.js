@@ -43,14 +43,14 @@ module.exports = (options) => {
           test: /\.(sa|sc|c)ss$/,
           use: [
             ...(dev ? [{ loader: 'cache-loader' }, { loader: 'style-loader' }] : [MiniCssExtractWebpackPlugin.loader]),
-            { loader: 'css-loader', options: { sourceMap: false } },
+            { loader: 'css-loader', options: { sourceMap: true } },
             { loader: 'postcss-loader', options: {
               ident: 'postcss',
-              sourceMap: false,
+              sourceMap: true,
               config: { ctx: { dev } }
             } },
-            { loader: 'resolve-url-loader', options: { sourceMap: false } },
-            { loader: 'sass-loader', options: { sourceMap: false } },
+            { loader: 'resolve-url-loader', options: { sourceMap: true } },
+            { loader: 'sass-loader', options: { sourceMap: true } },
           ]
         },
         {

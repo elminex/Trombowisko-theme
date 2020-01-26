@@ -50,7 +50,7 @@ add_action('init', 'register_menus');
 
 // CUSTOM BACKGROUNDS
 
-add_theme_support('custom-background', array(
+/*add_theme_support('custom-background', array(
     'wp-head-callback' => 'custom_background_cb',
 ));
 
@@ -65,6 +65,7 @@ function custom_background_cb()
 
     echo $style;
 }
+*/
 
 add_theme_support('title-tag');
 
@@ -88,6 +89,7 @@ add_filter('show_admin_bar', '__return_false');
 
 // CUSTOM COLOR PALETTE
 
+/*
 function custom_colors()
 {
     add_theme_support('editor-color-palette', array(
@@ -120,3 +122,4 @@ function custom_colors()
 }
 
 add_action('after_setup_theme', 'custom_colors');
+*/

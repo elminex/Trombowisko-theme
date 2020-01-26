@@ -19,12 +19,6 @@
           position: relative;
           z-index: 5;
           word-wrap: break-word;
-
-
-          @include breakpoint-md {
-            font-size: 64px;
-            width: 58vw;
-          }
         }
 
         .wp-block-button {
@@ -35,16 +29,40 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .page {
+    .wp-block-eedee-block-gutenslider {
+      &.dot-style-1 .slick-dots {
+        display: none !important;
+      }
+    }
+  }
+}
+
 @include breakpoint-md {
 
   .page {
     .wp-block-eedee-block-gutenslider {
+      &.dot-style-1 .slick-dots {
+        display: block;
+        bottom: 64px;
+      }
+
+      .slick-slider.slick-dotted {
+        margin-bottom: 0;
+      }
+
       .wp-block-eedee-block-gutenslide {
 
         .slide-content {
           padding-top: 60px;
           padding-bottom: 60px;
           justify-content: center;
+
+          h2 {
+            font-size: 64px;
+            width: 60vw;
+          }
         }
       }
     }
